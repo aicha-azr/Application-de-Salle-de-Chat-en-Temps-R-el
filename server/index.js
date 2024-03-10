@@ -18,6 +18,10 @@ const io = socketIo(server, {
 io.on('connection', (socket=>{
   console.log('New user connected');
 
+  socket.emit('message', (message)=>{
+    io.emit('message', message)
+    console.log(message);
+  })
   socket.on('disconnect', ()=>{
     console.log('User disconnected');
   })
